@@ -1,0 +1,28 @@
+usage: px [-h] [-L] [--pre FUNC] [--post FUNC] [-i MODULE] [--stack] [-x X]
+          expr [file ...]
+
+My Python version of `awk`
+
+positional arguments:
+  expr          python expression to evaluate
+  file          input file(s) --use `-` for stdin
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -L, --linear  linear mode
+  --pre FUNC    preprocessing applied to cells
+  --post FUNC   postprocessing applied to result object
+  -i MODULE     from MODULE import * --separate multiple modules with `,`
+  --stack       stack all files into one
+  -x X          execute arbitary python command before exit
+
+examples:
+  px 3+4
+  px -L x+y a.txt b.txt
+  px -L "f'name:\t{x}'" <(ls)
+  px -i math 'sin(pi/3)'
+  px --pre=int sum(x) series1.txt
+  px -L -i json --post dumps "{'name': x[4:].strip(), 'size': x[:4].strip()}" <(ls *.pdf -sh)
+  px --pre="lambda a: a**2+1" "[X/Y for X,Y in zip(x,y)]" <(px [4,3,3]) <(px [1,1,3])
+  px -i numpy,matplotlib.pyplot "plot([1,2],[4,2])" -x "show()"
+    
