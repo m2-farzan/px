@@ -61,7 +61,8 @@ def main():
 
     # Print result
     ## If the result is of list type, expand elements in lines
-    if hasattr(results, '__getitem__') and not type(results) == str:
+    if type(results) in (list, tuple, set, map, filter, reduce):
+        results = list(results)
         for j in range(len(results)):
             print(results[j])
     ## Otherwise print the entire object
