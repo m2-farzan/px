@@ -14,7 +14,7 @@ optional arguments:
   --post FUNC   postprocessing applied to result object
   -i MODULE     from MODULE import * --separate multiple modules with `,`
   --stack       stack all files into one
-  -x X          execute arbitary python command before exit
+  -x CMD        execute arbitary python command before exit
 
 examples:
   px 3+4
