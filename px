@@ -47,13 +47,13 @@ def main():
         for j in range(lengths[0]):
             for i in range(len(__input_list__)):
                 locals()[chr(97+(i+23)%26)] = __input_list__[i][j]
-            result = eval(args.expr)
+            result = eval(args.expr, locals())
             results.append(result)
     ## Normal mode (without -L)
     else:
         for i in range(len(__input_list__)):
             locals()[chr(97+(i+23)%26)] = __input_list__[i]
-        results = eval(args.expr)
+        results = eval(args.expr, locals())
 
     # Post-process result
     if args.post:
