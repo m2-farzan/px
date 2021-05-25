@@ -32,9 +32,9 @@ def main():
 
     # Pre-process cells (--pre)
     if args.pre:
-        __input_list__ = list(map(lambda lines:
-            list(map(lambda line: eval(f'({args.pre})({line})'), lines)),
-            __input_list__))
+        functor = eval(args.pre, locals())
+        for i in range(len(__input_list__)):
+            __input_list__[i] = list(map(functor, __input_list__[i]))
 
     # Evaluate the actual expression
     ## Linear mode (with -L)
