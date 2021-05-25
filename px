@@ -57,7 +57,7 @@ def main():
 
     # Post-process result
     if args.post:
-        results = eval(f'({args.post})({results})')
+        results = eval(f'({args.post})({results})', locals())
 
     # Print result
     ## If the result is of list type, expand elements in lines
