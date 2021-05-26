@@ -35,4 +35,6 @@ installation (global):
   [Assuming /usr/local/bin is in PATH.]
   sudo wget -O /usr/local/bin/px https://raw.githubusercontent.com/m2-farzan/px/main/px
   sudo chmod +x /usr/local/bin/px
-    
+
+tutorial:
+  https://nbviewer.jupyter.org/github/m2-farzan/px/blob/main/tutorial.ipynb
