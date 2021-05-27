@@ -91,11 +91,11 @@ def parse_args():
     argparser.add_argument("-L", "--linear", action='store_true', help="linear mode")
     argparser.add_argument("--pre", metavar="FUNC", help="preprocessing applied to cells")
     argparser.add_argument("--post", metavar="FUNC", help="postprocessing applied to result object")
-    argparser.add_argument("-i", metavar="MODULE", help="from MODULE import * --separate multiple modules with `,`")
+    argparser.add_argument("-i", metavar="MODULE", help="from MODULE import * (separate multiple modules with `,`)")
     argparser.add_argument("--stack", action='store_true', help="stack all files into one")
     argparser.add_argument("-x", metavar="CMD", help="execute arbitary python command before exit")
     argparser.add_argument("expr", help="python expression to evaluate")
-    argparser.add_argument("file", nargs='*', help="input file(s) --use `-` for stdin")
+    argparser.add_argument("file", nargs='*', help="input file(s) (use `-` for stdin)")
     return argparser.parse_args()
 
 

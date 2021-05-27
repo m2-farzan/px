@@ -5,14 +5,14 @@ My Python version of `awk`
 
 positional arguments:
   expr          python expression to evaluate
-  file          input file(s) --use `-` for stdin
+  file          input file(s) (use `-` for stdin)
 
 optional arguments:
   -h, --help    show this help message and exit
   -L, --linear  linear mode
   --pre FUNC    preprocessing applied to cells
   --post FUNC   postprocessing applied to result object
-  -i MODULE     from MODULE import * --separate multiple modules with `,`
+  -i MODULE     from MODULE import * (separate multiple modules with `,`)
   --stack       stack all files into one
   -x CMD        execute arbitary python command before exit
 
