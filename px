@@ -9,7 +9,12 @@ def main():
     # Load CLI args
     args = parse_args()
 
-    # Import modules (-i option)
+    # Import px modules
+    if args.bi or args.bo:
+        import pickle
+        from base64 import b64encode, b64decode
+
+    # Import user modules (-i option)
     if args.i:
         modules = args.i.split(',')
         for module in modules:
@@ -22,7 +27,11 @@ def main():
             stream = sys.stdin
         else:
             stream = open(path)
-        __input_list__.append(stream.read().splitlines())
+
+        if args.bi:
+            __input_list__.append(pickle.loads(b64decode(stream.read())))
+        else:
+            __input_list__.append(stream.read().splitlines())
 
     # Stack (--stack option)
     if args.stack:
@@ -64,8 +73,11 @@ def main():
         results = filter(lambda u: not u is None, results)
 
     # Print result
+    ## If --bo flag is enabled, just dump the whole results object as a pickle.
+    if args.bo:
+        print(b64encode(pickle.dumps(results)).decode())
     ## If the result is of list type, expand elements in lines
-    if type(results) in (list, tuple, set, map, filter, reduce, range):
+    elif type(results) in (list, tuple, set, map, filter, reduce, range):
         results = list(results)
         for j in range(len(results)):
             print(results[j])
@@ -99,6 +111,8 @@ def parse_args():
     argparser.add_argument("--stack", action='store_true', help="stack all files into one")
     argparser.add_argument("-x", metavar="CMD", help="execute arbitary python command before exit")
     argparser.add_argument("--no-none", action='store_true', help="don't print None items in results")
+    argparser.add_argument("--bo", action='store_true', help="[binary output] keep output in python object format. (useful for piping to another px process.)")
+    argparser.add_argument("--bi", action='store_true', help="[binary input] parse input in python object format. (useful for piping from another px process.)")
     argparser.add_argument("expr", help="python expression to evaluate")
     argparser.add_argument("file", nargs='*', help="input file(s) (use `-` for stdin)")
     return argparser.parse_args()

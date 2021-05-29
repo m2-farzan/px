@@ -16,6 +16,8 @@ optional arguments:
   --stack       stack all files into one
   -x CMD        execute arbitary python command before exit
   --no-none     don't print None items in results
+  --bo          [binary output] keep output in python object format. (useful for piping to another px process.)
+  --bi          [binary input] parse input in python object format. (useful for piping from another px process.)
 
 examples:
   px 3+4
