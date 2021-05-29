@@ -59,6 +59,10 @@ def main():
     if args.post:
         results = eval(f'({args.post})({results})', locals())
 
+    # Remove None values in results
+    if args.no_none:
+        results = filter(lambda u: not u is None, results)
+
     # Print result
     ## If the result is of list type, expand elements in lines
     if type(results) in (list, tuple, set, map, filter, reduce, range):
@@ -94,6 +98,7 @@ def parse_args():
     argparser.add_argument("-i", metavar="MODULE", help="from MODULE import * (separate multiple modules with `,`)")
     argparser.add_argument("--stack", action='store_true', help="stack all files into one")
     argparser.add_argument("-x", metavar="CMD", help="execute arbitary python command before exit")
+    argparser.add_argument("--no-none", action='store_true', help="don't print None items in results")
     argparser.add_argument("expr", help="python expression to evaluate")
     argparser.add_argument("file", nargs='*', help="input file(s) (use `-` for stdin)")
     return argparser.parse_args()

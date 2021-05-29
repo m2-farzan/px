@@ -15,6 +15,7 @@ optional arguments:
   -i MODULE     from MODULE import * (separate multiple modules with `,`)
   --stack       stack all files into one
   -x CMD        execute arbitary python command before exit
+  --no-none     don't print None items in results
 
 examples:
   px 3+4
