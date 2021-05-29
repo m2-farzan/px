@@ -61,7 +61,7 @@ def main():
 
     # Print result
     ## If the result is of list type, expand elements in lines
-    if type(results) in (list, tuple, set, map, filter, reduce):
+    if type(results) in (list, tuple, set, map, filter, reduce, range):
         results = list(results)
         for j in range(len(results)):
             print(results[j])
